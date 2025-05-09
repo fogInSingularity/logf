@@ -1,0 +1,42 @@
+prec = 1000!;
+
+print("ln2 in float:");
+printsingle(log(2));
+
+print("ln3/2 in float:");
+printsingle(log(3/2));
+
+print("2/3 in float:");
+printsingle(2/3);
+
+f = log(x);
+I = [2/3; 4/3];
+
+max_err = 1b-23;
+
+// guessdegree = gueses degree of polynomial
+try_deg = guessdegree(f, I, max_err);
+
+// sup = get supremum of interval
+deg = sup(try_deg);
+
+print("degree:");
+print(deg);
+
+// computes minimax approximation in horner form
+p = fpminimax(f, deg, [|SG...|], I, relative);
+
+print("Minimax polynomial approximation of ln(x) on [2/3, 4/3]:");
+printexpansion(p);
+//print(p);
+
+// computes absolute error
+bound_err = 3b-25;
+err = supnorm(p, f, I, absolute, bound_err);
+display=binary! ;
+print("Maximum error:");
+print(err);
+
+// prints coeffs in float format
+print("Coefs(in horner form):");
+for i from 0 to degree(p) do printsingle(coeff(p, i));

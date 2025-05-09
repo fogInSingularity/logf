@@ -1,0 +1,13 @@
+prec = 500!;
+
+// display=hexadecimal;
+
+n = 256; // k = 8
+
+for i from 0 to n-1 do {
+    x = 1 + i / n;
+    y = round(log(x), SG, RN);
+
+    printsingle(round(x, SG, RN));
+    printsingle(y);
+};
